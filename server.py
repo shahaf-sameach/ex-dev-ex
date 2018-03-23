@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from logic import calculateNextState
+from calculator import Calculator
 
 app = Flask(__name__)
 
@@ -8,7 +8,7 @@ def calculate():
   if request.is_json:
     try:
       data = request.get_json()
-      response = calculateNextState(data['calculatorState'], data['input'])
+      response = Calculator.calculateNextState(data['calculatorState'], data['input'])
       return jsonify(response)
     except:
       pass
