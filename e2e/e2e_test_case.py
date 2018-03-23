@@ -52,7 +52,7 @@ class E2eTestCase(unittest.TestCase):
 
 
   def test_get_is_blocked(self):
-    response = requests.get('http://web:5000/calculate')
+    response = requests.get(self.url)
     self.assertTrue(response.status_code == 405)
 
   def __check_200(self, response):

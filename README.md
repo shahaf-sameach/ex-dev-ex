@@ -1,7 +1,7 @@
 # Web Dev Exercise #
 
 ## Logic (calculate next state) ##
-simply run 'python calculator.py'
+simply run `python calculator.py`
 
 ### test ###
 `python calculator_test_case.py`
