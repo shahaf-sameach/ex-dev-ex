@@ -1,6 +1,6 @@
 FROM python:2.7-alpine
-ADD . /code
-WORKDIR /code
+ADD . /app
+WORKDIR /app
 RUN pip install -r requirements.txt
 CMD ["python", "server.py"]
 

@@ -8,9 +8,6 @@ class ServerTestCase(unittest.TestCase):
     server.app.testing = True
     self.app = server.app.test_client()
 
-  def tearDown(self):
-    pass
-
   def test_get_is_blocked(self):
     response = self.app.get('/calculate')
     self.assertTrue(response.status_code == 405)

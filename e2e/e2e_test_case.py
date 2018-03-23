@@ -8,7 +8,8 @@ class E2eTestCase(unittest.TestCase):
     self.url = 'http://web:5000/calculate'
     self.headers = {'Content-Type': 'application/json'}
 
-  def test_1(self):
+  #TODO: add more tests like this
+  def test_scenario_1(self):
     response = self.__make_request('1', None)
     self.__check_200(response)
     self.__check_display(response.json(), '1')
