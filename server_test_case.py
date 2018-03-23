@@ -2,7 +2,7 @@ import server
 import unittest
 import json
 
-class FlaskrTestCase(unittest.TestCase):
+class ServerTestCase(unittest.TestCase):
 
   def setUp(self):
     server.app.testing = True
@@ -15,13 +15,12 @@ class FlaskrTestCase(unittest.TestCase):
     response = self.app.get('/calculate')
     self.assertTrue(response.status_code == 405)
 
-  # not working...
+  #TODO : add more tests like this
   def test_calculate_with_valid_data(self):
-    response = self.app.post('/calculate', data=dict(
-        input='1',
-        calculatorState=None
-    ))
-    data = json.loads(response)
+    response = self.app.post('/calculate',
+        headers={'Content-Type': 'application/json'},
+        data=json.dumps(dict(input='1',calculatorState=None)))
+    data = json.loads(response.data)
     self.assertTrue(data['display'] == '1')
 
   def test_calculate_with_invalid_data(self):

@@ -12,7 +12,7 @@ def calculate():
       return jsonify(response)
     except:
       pass
-
+      
   return "bad request", 400
   
 

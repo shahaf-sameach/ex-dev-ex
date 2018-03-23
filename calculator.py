@@ -45,24 +45,26 @@ class Calculator(object):
     return new_state
 
 if __name__ == '__main__':
+  calculateNextState = Calculator.calculateNextState
+  
   s = None
-  s = Calculator.calculateNextState(s, "1")
+  s = calculateNextState(s, "1")
   print s, s['display']
-  s = Calculator.calculateNextState(s, "2")
+  s = calculateNextState(s, "2")
   print s, s['display']
-  s = Calculator.calculateNextState(s, "+")
+  s = calculateNextState(s, "+")
   print s, s['display']
-  s = Calculator.calculateNextState(s, "4")
+  s = calculateNextState(s, "4")
   print s, s['display']
-  s = Calculator.calculateNextState(s, "3")
+  s = calculateNextState(s, "3")
   print s, s['display']
-  s = Calculator.calculateNextState(s, "=")
+  s = calculateNextState(s, "=")
   print s, s['display']
-  s = Calculator.calculateNextState(s, "+")
+  s = calculateNextState(s, "+")
   print s, s['display']
-  s = Calculator.calculateNextState(s, "1")
+  s = calculateNextState(s, "1")
   print s, s['display']
-  s = Calculator.calculateNextState(s, "=")
+  s = calculateNextState(s, "=")
   print s, s['display']
-  s = Calculator.calculateNextState(s, "5")
+  s = calculateNextState(s, "5")
   print s, s['display']
