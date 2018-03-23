@@ -8,7 +8,6 @@ class E2eTestCase(unittest.TestCase):
     self.url = 'http://web:5000/calculate'
     self.headers = {'Content-Type': 'application/json'}
 
-  #TODO: add more tests like this
   def test_scenario_1(self):
     response = self.__make_request('1', None)
     self.__check_200(response)
@@ -50,6 +49,15 @@ class E2eTestCase(unittest.TestCase):
     self.__check_200(response)
     self.__check_display(response.json(), '5')
 
+  def test_calculate_with_mid_state_number(self):
+    response = self.__make_request('5', {"display": "1"})
+    self.__check_200(response)
+    self.__check_display(response.json(), '15')
+
+  def test_calculate_with_mid_state_operator(self):
+    response = self.__make_request('+', {"display": "5"})
+    self.__check_200(response)
+    self.__check_display(response.json(), '5')
 
   def test_get_is_blocked(self):
     response = requests.get(self.url)

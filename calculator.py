@@ -11,6 +11,12 @@ class Calculator(object):
       new_state['op'] = ''
     else:
       new_state = state.copy()
+      if 'history' not in new_state.keys():
+        new_state['history'] = [new_state['display']]
+
+      if 'op' not in new_state.keys():
+        new_state['op'] = ''
+      
       if input_s in "+-*/=":
         if len(new_state['history']) > 1 and not new_state['history'][1] is '':
           a, b = int(state['history'][0]), int(state['history'][1])  
@@ -29,16 +35,16 @@ class Calculator(object):
         new_state['op'] = input_s
 
       elif input_s in '0123456789':
-          if new_state['op'] == '=':
-            new_state['history'] = [input_s]
-            new_state['display'] = input_s
-          else:
-            if new_state['op'] != '' and new_state['op'] in '+-*/':
-              if len(new_state['history']) == 1:
-                new_state['history'].append('')
+        if new_state['op'] == '=':
+          new_state['history'] = [input_s]
+          new_state['display'] = input_s
+        else:
+          if new_state['op'] != '' and new_state['op'] in '+-*/':
+            if len(new_state['history']) == 1:
+              new_state['history'].append('')
 
-            new_state['history'][-1] = state['history'][-1] + input_s
-            new_state['display'] = new_state['history'][-1]
+          new_state['history'][-1] = new_state['history'][-1] + input_s
+          new_state['display'] = new_state['history'][-1]
       else:
         pass
     
