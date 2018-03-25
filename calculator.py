@@ -1,4 +1,4 @@
-
+import json
 
 class Calculator(object):
 
@@ -10,7 +10,7 @@ class Calculator(object):
       new_state['display'] = input_s
       new_state['op'] = ''
     else:
-      new_state = state.copy()
+      new_state = json.loads(state)
       if 'history' not in new_state.keys():
         new_state['history'] = [new_state['display']]
 
@@ -19,7 +19,7 @@ class Calculator(object):
       
       if input_s in "+-*/=":
         if len(new_state['history']) > 1 and not new_state['history'][1] is '':
-          a, b = int(state['history'][0]), int(state['history'][1])  
+          a, b = int(new_state['history'][0]), int(new_state['history'][1])  
           if new_state['op'] == '+':
             c =  a + b
           elif new_state['op'] == '-':
@@ -48,29 +48,29 @@ class Calculator(object):
       else:
         pass
     
-    return new_state
+    return json.dumps(new_state)
 
 if __name__ == '__main__':
   calculateNextState = Calculator.calculateNextState
   
   s = None
   s = calculateNextState(s, "1")
-  print s, s['display']
+  print s, json.loads(s)['display']
   s = calculateNextState(s, "2")
-  print s, s['display']
+  print s, json.loads(s)['display']
   s = calculateNextState(s, "+")
-  print s, s['display']
+  print s, json.loads(s)['display']
   s = calculateNextState(s, "4")
-  print s, s['display']
+  print s, json.loads(s)['display']
   s = calculateNextState(s, "3")
-  print s, s['display']
+  print s, json.loads(s)['display']
   s = calculateNextState(s, "=")
-  print s, s['display']
+  print s, json.loads(s)['display']
   s = calculateNextState(s, "+")
-  print s, s['display']
+  print s, json.loads(s)['display']
   s = calculateNextState(s, "1")
-  print s, s['display']
+  print s, json.loads(s)['display']
   s = calculateNextState(s, "=")
-  print s, s['display']
+  print s, json.loads(s)['display']
   s = calculateNextState(s, "5")
-  print s, s['display']
+  print s, json.loads(s)['display']

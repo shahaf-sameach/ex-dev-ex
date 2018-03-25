@@ -13,49 +13,49 @@ class E2eTestCase(unittest.TestCase):
     self.__check_200(response)
     self.__check_display(response.json(), '1')
 
-    response = self.__make_request('2', response.json())
+    response = self.__make_request('2', response.text)
     self.__check_200(response)
     self.__check_display(response.json(), '12')
 
-    response = self.__make_request('+', response.json())
+    response = self.__make_request('+', response.text)
     self.__check_200(response)
     self.__check_display(response.json(), '12')
 
-    response = self.__make_request('4', response.json())
+    response = self.__make_request('4', response.text)
     self.__check_200(response)
     self.__check_display(response.json(), '4')
 
-    response = self.__make_request('3', response.json())
+    response = self.__make_request('3', response.text)
     self.__check_200(response)
     self.__check_display(response.json(), '43')
 
-    response = self.__make_request('=', response.json())
+    response = self.__make_request('=', response.text)
     self.__check_200(response)
     self.__check_display(response.json(), '55')
 
-    response = self.__make_request('+', response.json())
+    response = self.__make_request('+', response.text)
     self.__check_200(response)
     self.__check_display(response.json(), '55')
 
-    response = self.__make_request('1', response.json())
+    response = self.__make_request('1', response.text)
     self.__check_200(response)
     self.__check_display(response.json(), '1')
 
-    response = self.__make_request('=', response.json())
+    response = self.__make_request('=', response.text)
     self.__check_200(response)
     self.__check_display(response.json(), '56')
 
-    response = self.__make_request('5', response.json())
+    response = self.__make_request('5', response.text)
     self.__check_200(response)
     self.__check_display(response.json(), '5')
 
   def test_calculate_with_mid_state_number(self):
-    response = self.__make_request('5', {"display": "1"})
+    response = self.__make_request('5', json.dumps({"display": "1"}))
     self.__check_200(response)
     self.__check_display(response.json(), '15')
 
   def test_calculate_with_mid_state_operator(self):
-    response = self.__make_request('+', {"display": "5"})
+    response = self.__make_request('+', json.dumps({"display": "5"}))
     self.__check_200(response)
     self.__check_display(response.json(), '5')
 

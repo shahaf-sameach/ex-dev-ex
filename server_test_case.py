@@ -22,14 +22,14 @@ class ServerTestCase(unittest.TestCase):
   def test_calculate_with_mid_state_number(self):
     response = self.app.post('/calculate',
         headers={'Content-Type': 'application/json'},
-        data=json.dumps(dict(input='1',calculatorState={"display": "1"})))
+        data=json.dumps(dict(input='1',calculatorState=json.dumps({"display": "1"}))))
     data = json.loads(response.data)
     self.assertTrue(data['display'] == '11')
 
   def test_calculate_with_mid_state_operator(self):
     response = self.app.post('/calculate',
         headers={'Content-Type': 'application/json'},
-        data=json.dumps(dict(input='+',calculatorState={"display": "4"})))
+        data=json.dumps(dict(input='+',calculatorState=json.dumps({"display": "4"}))))
     data = json.loads(response.data)
     self.assertTrue(data['display'] == '4')
 

@@ -1,4 +1,5 @@
 import unittest
+import json
 from calculator import Calculator
 
 class CalculatorTestCase(unittest.TestCase):
@@ -11,53 +12,56 @@ class CalculatorTestCase(unittest.TestCase):
 
   def test_scenario_1(self):
     s = self.calculateNextState(None, "1")
-    self.assertEqual(s['display'], '1')
+    self.assertEqual(self.__get_display(s), '1')
     s = self.calculateNextState(s, "2")
-    self.assertEqual(s['display'], '12')
+    self.assertEqual(self.__get_display(s), '12')
     s = self.calculateNextState(s, "+")
-    self.assertEqual(s['display'], '12')
+    self.assertEqual(self.__get_display(s), '12')
     s = self.calculateNextState(s, "4")
-    self.assertEqual(s['display'], '4')
+    self.assertEqual(self.__get_display(s), '4')
     s = self.calculateNextState(s, "3")
-    self.assertEqual(s['display'], '43')
+    self.assertEqual(self.__get_display(s), '43')
     s = self.calculateNextState(s, "=")
-    self.assertEqual(s['display'], '55')
+    self.assertEqual(self.__get_display(s), '55')
     s = self.calculateNextState(s, "+")
-    self.assertEqual(s['display'], '55')
+    self.assertEqual(self.__get_display(s), '55')
     s = self.calculateNextState(s, "1")
-    self.assertEqual(s['display'], '1')
+    self.assertEqual(self.__get_display(s), '1')
     s = self.calculateNextState(s, "=")
-    self.assertEqual(s['display'], '56')
+    self.assertEqual(self.__get_display(s), '56')
     s = self.calculateNextState(s, "5")
-    self.assertEqual(s['display'], '5')
+    self.assertEqual(self.__get_display(s), '5')
 
   def test_scenario_2(self):
     s = self.calculateNextState(None, "1")
-    self.assertEqual(s['display'], '1')
+    self.assertEqual(self.__get_display(s), '1')
     s = self.calculateNextState(s, "2")
-    self.assertEqual(s['display'], '12')
+    self.assertEqual(self.__get_display(s), '12')
     s = self.calculateNextState(s, "+")
-    self.assertEqual(s['display'], '12')
+    self.assertEqual(self.__get_display(s), '12')
     s = self.calculateNextState(s, "+")
-    self.assertEqual(s['display'], '12')
+    self.assertEqual(self.__get_display(s), '12')
     s = self.calculateNextState(s, "+")
-    self.assertEqual(s['display'], '12')
+    self.assertEqual(self.__get_display(s), '12')
     s = self.calculateNextState(s, "3")
-    self.assertEqual(s['display'], '3')
+    self.assertEqual(self.__get_display(s), '3')
     s = self.calculateNextState(s, "4")
-    self.assertEqual(s['display'], '34')
+    self.assertEqual(self.__get_display(s), '34')
     s = self.calculateNextState(s, "=")
-    self.assertEqual(s['display'], '46')
+    self.assertEqual(self.__get_display(s), '46')
 
   def test_start_in_mid_state_with_number(self):
     s = {"display": "1"}
-    s = self.calculateNextState(s, "1")
-    self.assertEqual(s['display'], "11")
+    s = self.calculateNextState(json.dumps(s), "1")
+    self.assertEqual(self.__get_display(s), "11")
   
   def test_start_in_mid_state_with_operator(self):
     s = {"display": "4"}
-    s = self.calculateNextState(s, "+")
-    self.assertEqual(s['display'], "4")
+    s = self.calculateNextState(json.dumps(s), "+")
+    self.assertEqual(self.__get_display(s), "4")
+
+  def __get_display(self, state):
+    return json.loads(state)['display']
 
 
 if __name__ == '__main__':

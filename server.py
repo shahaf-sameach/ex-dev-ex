@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from calculator import Calculator
+import json
 
 app = Flask(__name__)
 
@@ -8,11 +9,12 @@ def calculate():
   if request.is_json:
     try:
       data = request.get_json()
-      response = Calculator.calculateNextState(data['calculatorState'], data['input'])
-      return jsonify(response)
-    except:
-      pass
-            
+      state = None if 'calculatorState' not in data.keys() else data['calculatorState']
+      response = Calculator.calculateNextState(state, data['input'])
+      return response
+    except Exception as e:
+      return str(e), 405
+
   return "bad request", 400
   
 
