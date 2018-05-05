@@ -2,7 +2,7 @@ import unittest
 import json
 from calculator import Calculator
 
-class CalculatorTestCase(unittest.TestCase):
+class CalculatorTest(unittest.TestCase):
 
   def setUp(self):
     self.calculateNextState = Calculator.calculateNextState

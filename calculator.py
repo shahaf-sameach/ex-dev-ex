@@ -1,16 +1,18 @@
+from __future__ import print_function
 import json
+import ast
 
 class Calculator(object):
 
   @staticmethod
   def calculateNextState(state, input_s):
     new_state = {}
-    if state == None:
+    if state == None or state == "":
       new_state['history'] = [input_s]
       new_state['display'] = input_s
       new_state['op'] = ''
     else:
-      new_state = json.loads(state)
+      new_state = ast.literal_eval(state)
       if 'history' not in new_state.keys():
         new_state['history'] = [new_state['display']]
 
@@ -55,22 +57,22 @@ if __name__ == '__main__':
   
   s = None
   s = calculateNextState(s, "1")
-  print s, json.loads(s)['display']
+  print(s, json.loads(s)['display'])
   s = calculateNextState(s, "2")
-  print s, json.loads(s)['display']
+  print(s, json.loads(s)['display'])
   s = calculateNextState(s, "+")
-  print s, json.loads(s)['display']
+  print(s, json.loads(s)['display'])
   s = calculateNextState(s, "4")
-  print s, json.loads(s)['display']
+  print(s, json.loads(s)['display'])
   s = calculateNextState(s, "3")
-  print s, json.loads(s)['display']
+  print(s, json.loads(s)['display'])
   s = calculateNextState(s, "=")
-  print s, json.loads(s)['display']
+  print(s, json.loads(s)['display'])
   s = calculateNextState(s, "+")
-  print s, json.loads(s)['display']
+  print(s, json.loads(s)['display'])
   s = calculateNextState(s, "1")
-  print s, json.loads(s)['display']
+  print(s, json.loads(s)['display'])
   s = calculateNextState(s, "=")
-  print s, json.loads(s)['display']
+  print(s, json.loads(s)['display'])
   s = calculateNextState(s, "5")
-  print s, json.loads(s)['display']
+  print(s, json.loads(s)['display'])

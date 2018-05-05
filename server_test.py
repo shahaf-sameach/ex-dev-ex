@@ -2,7 +2,7 @@ import server
 import unittest
 import json
 
-class ServerTestCase(unittest.TestCase):
+class ServerTest(unittest.TestCase):
 
   def setUp(self):
     server.app.testing = True
@@ -15,7 +15,7 @@ class ServerTestCase(unittest.TestCase):
   def test_calculate_with_valid_data(self):
     response = self.app.post('/calculate',
         headers={'Content-Type': 'application/json'},
-        data=json.dumps(dict(input='1',calculatorState=None)))
+        data=json.dumps(dict(input='1',calculatorState="")))
     data = json.loads(response.data)
     self.assertTrue(data['display'] == '1')
 

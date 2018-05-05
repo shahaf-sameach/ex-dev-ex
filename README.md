@@ -4,17 +4,15 @@
 simply run `python calculator.py`
 
 #### test (unitest) ####
-`python calculator_test_case.py`
+`python calculator_test.py`
 
 ## Server ##
 for local server use `python server.py` will start the server on port 5000
 
-for server in docker container use `docker-compose up web`
-
 #### test (integration tests) ####
-`python server_test_case`
+`python server_test.py`
 
 ## e2e tests ##
-`docker-compose up --abort-on-container-exit`
+run `docker-compose up` and run `python e2e_test.py` 
 
 
