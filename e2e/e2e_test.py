@@ -2,11 +2,14 @@ from selenium import webdriver
 import unittest
 
 # TODO should selenium be added to the requirements file?
+from selenium.webdriver import DesiredCapabilities
 
 
 class CalculatorE2E(unittest.TestCase):
 
     def setUp(self):
+
+        # self._driver = webdriver.Remote("http://selenium:4444/wd/hub", DesiredCapabilities.FIREFOX)
         self._driver = webdriver.Firefox(executable_path='./geckodriver')
         self._url = "http://localhost:8080/signup"
 

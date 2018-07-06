@@ -27,5 +27,18 @@ services:
       - REDIS_ADDRESS=redis-db:6379
     depends_on:
       - redis-db
+  selenium:
+    image: "selenium/standalone-firefox"
+    volumes:
+      - /dev/shm:/dev/shm
+#  test-service:
+#    depends_on:
+#      - selenium
+#      - backend
+#    build:
+#      context: "e2e/"
+#      dockerfile: "Dockerfile"
+
+
 
 
