@@ -1,18 +1,26 @@
 # Web Dev Exercise #
 
-## Logic (calculate next state) ##
-simply run `python logic/calculator.py`
+requiremnts
+- python 3.6 (or above)
+- docker and docker-compose
 
-#### test (unitest) ####
-`python logic/calculator_test.py`
+## Web & Logic ##
 
-## Server ##
-run `docker-compose up backend`
+##### Logic (calculate next state) #####
+run `python logic/calculator.py`
 
-#### test (integration tests) ####
-`python logic/server_test.py`
+##### Server #####
+run `docker-compose up backend` (the server will bind to localhost:8080)
 
-## e2e tests ##
+## Tests ##
+
+##### test (unitest) #####
+run `python logic/calculator_test.py`
+
+##### test (integration tests) #####
+run `python logic/server_test.py`
+
+##### e2e tests #####
 run `docker-compose up e2e-test`
 
 
