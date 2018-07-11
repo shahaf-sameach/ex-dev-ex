@@ -1,7 +1,9 @@
 version: '3'
 services:
   calculator:
-    build: .
+    build:
+      context: "logic/"
+      dockerfile: "Dockerfile"
   frontend:
     image: "webdevtoolsandtech/currency-frontend"
   backend:
@@ -27,17 +29,12 @@ services:
       - REDIS_ADDRESS=redis-db:6379
     depends_on:
       - redis-db
-  selenium:
-    image: "selenium/standalone-firefox"
-    volumes:
-      - /dev/shm:/dev/shm
-#  test-service:
-#    depends_on:
-#      - selenium
-#      - backend
-#    build:
-#      context: "e2e/"
-#      dockerfile: "Dockerfile"
+  e2e-test:
+    depends_on:
+      - backend
+    build:
+      context: "e2e/"
+      dockerfile: "Dockerfile"
 
 
 

@@ -1,17 +1,23 @@
 from selenium import webdriver
+from pyvirtualdisplay import Display
 import unittest
-
-# TODO should selenium be added to the requirements file?
-from selenium.webdriver import DesiredCapabilities
+import os
 
 
 class CalculatorE2E(unittest.TestCase):
 
     def setUp(self):
+        display = Display(visible=0, size=(800, 600))
+        display.start()
 
-        # self._driver = webdriver.Remote("http://selenium:4444/wd/hub", DesiredCapabilities.FIREFOX)
-        self._driver = webdriver.Firefox(executable_path='./geckodriver')
-        self._url = "http://localhost:8080/signup"
+        firefox_profile = webdriver.FirefoxProfile()
+        firefox_profile.set_preference('browser.download.folderList', 2)
+        firefox_profile.set_preference('browser.download.manager.showWhenStarting', False)
+        firefox_profile.set_preference('browser.download.dir', os.getcwd())
+        firefox_profile.set_preference('browser.helperApps.neverAsk.saveToDisk', 'text/csv')
+
+        self._driver = webdriver.Firefox(firefox_profile=firefox_profile)
+        self._url = "http://backend:80/signup"
 
     def test_basic_operations(self):
         """
@@ -187,7 +193,7 @@ class CalculatorE2E(unittest.TestCase):
 
         # Check that the display shows 4.
         display = self._driver.find_element_by_class_name("display")
-        self.assertEqual("4", display.text)
+        self.assertEqual("4.0", display.text)
 
     def tearDown(self):
         self._driver.quit()
