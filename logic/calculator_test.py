@@ -1,6 +1,6 @@
 import unittest
 import json
-from logic.calculator import Calculator
+from calculator import Calculator
 
 class CalculatorTest(unittest.TestCase):
 

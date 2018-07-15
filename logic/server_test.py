@@ -1,4 +1,4 @@
-from logic import server
+import server
 import unittest
 import json
 
