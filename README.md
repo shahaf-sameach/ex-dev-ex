@@ -9,6 +9,9 @@ requiremnts
 ##### Logic (calculate next state) #####
 run `python logic/calculator.py`
 
+to run the logic as a web service simply run `python logic/server.py`
+the service will bind to default port 5000 on local host (can be changed by providing `FLASK_PORT` ENV)
+
 ##### Server #####
 run `docker-compose up backend` (the server will bind to localhost:8080)
 
