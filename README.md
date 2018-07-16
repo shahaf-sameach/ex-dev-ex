@@ -18,7 +18,9 @@ E.g of an input to the server using curl:
 run `docker build . -t server`
 run `docker run -p 5000:5000 server`
 
-To run the whole system(web UI) run `docker-compose up backend` (the server will bind to localhost:8080)
+##### Docker-compose #####
+run `docker-compose build`
+run `docker-compose up backend` (the server will bind to localhost:8080)
 
 ## Tests ##
 
@@ -29,6 +31,7 @@ run `python calculator_test.py`
 run `python server_test.py`
 
 ##### e2e tests #####
+The E2E tests are executed on a Firefox browser.
 run `docker-compose up e2e-test`
 
 
