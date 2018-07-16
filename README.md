@@ -3,6 +3,7 @@
 requiremnts
 - python 3.6 (or above)
 - docker and docker-compose
+- Flask
 
 ## Web & Logic ##
 
