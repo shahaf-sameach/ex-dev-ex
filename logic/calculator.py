@@ -7,7 +7,7 @@ class Calculator(object):
   @staticmethod
   def calculateNextState(state, input_s):
     new_state = {}
-    if state == None or state == "":
+    if state == None or state == "" or state == 'None':
       new_state['history'] = [input_s]
       new_state['display'] = input_s
       new_state['op'] = ''
