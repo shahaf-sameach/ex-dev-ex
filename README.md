@@ -33,6 +33,7 @@ run `python server_test.py`
 
 ##### e2e tests #####
 The E2E tests are executed on a Firefox browser.
+
 run `docker-compose up e2e-test`
 
 
