@@ -1,6 +1,6 @@
 # Web Dev Exercise #
 
-requiremnts
+requirements:
 - python 3.6 (or above)
 - docker and docker-compose
 - Flask
