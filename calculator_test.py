@@ -96,7 +96,7 @@ class CalculatorTest(unittest.TestCase):
     s = self.calculateNextState(s, "9")
     self.assertEqual(self.__get_display(s), '9')
     s = self.calculateNextState(s, "=")
-    self.assertEqual(self.__get_display(s), '5')
+    self.assertEqual(self.__get_display(s), '5.0')
 
   def __get_display(self, state):
     return json.loads(state)['display']
