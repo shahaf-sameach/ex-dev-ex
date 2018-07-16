@@ -60,6 +60,44 @@ class CalculatorTest(unittest.TestCase):
     s = self.calculateNextState(json.dumps(s), "+")
     self.assertEqual(self.__get_display(s), "4")
 
+  def test_subtraction(self):
+    s = self.calculateNextState(None, "1")
+    self.assertEqual(self.__get_display(s), '1')
+    s = self.calculateNextState(s, "8")
+    self.assertEqual(self.__get_display(s), '18')
+    s = self.calculateNextState(s, "-")
+    self.assertEqual(self.__get_display(s), '18')
+    s = self.calculateNextState(s, "1")
+    self.assertEqual(self.__get_display(s), '1')
+    s = self.calculateNextState(s, "0")
+    self.assertEqual(self.__get_display(s), '10')
+    s = self.calculateNextState(s, "=")
+    self.assertEqual(self.__get_display(s), '8')
+
+  def test_multiplication(self):
+    s = self.calculateNextState(None, "1")
+    self.assertEqual(self.__get_display(s), '1')
+    s = self.calculateNextState(s, "1")
+    self.assertEqual(self.__get_display(s), '11')
+    s = self.calculateNextState(s, "*")
+    self.assertEqual(self.__get_display(s), '11')
+    s = self.calculateNextState(s, "5")
+    self.assertEqual(self.__get_display(s), '5')
+    s = self.calculateNextState(s, "=")
+    self.assertEqual(self.__get_display(s), '55')
+
+  def test_division(self):
+    s = self.calculateNextState(None, "4")
+    self.assertEqual(self.__get_display(s), '4')
+    s = self.calculateNextState(s, "5")
+    self.assertEqual(self.__get_display(s), '45')
+    s = self.calculateNextState(s, "/")
+    self.assertEqual(self.__get_display(s), '45')
+    s = self.calculateNextState(s, "9")
+    self.assertEqual(self.__get_display(s), '9')
+    s = self.calculateNextState(s, "=")
+    self.assertEqual(self.__get_display(s), '5')
+
   def __get_display(self, state):
     return json.loads(state)['display']
 
