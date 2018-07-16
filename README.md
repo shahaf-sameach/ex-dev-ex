@@ -15,7 +15,10 @@ E.g of an input to the server using curl:
 `curl http://localhost:5000/calculate -X POST -H 'content-type: application/json' -d '{"calculatorState": null, "input": "1"}'`
 
 ##### Server #####
-run `docker-compose up backend` (the server will bind to localhost:8080)
+run `docker build . -t server`
+run `docker run -p 5000:5000 server`
+
+To run the whole system(web UI) run `docker-compose up backend` (the server will bind to localhost:8080)
 
 ## Tests ##
 

@@ -17,46 +17,46 @@ class ServerTest(unittest.TestCase):
         response = self.app.post('/calculate',
                                  headers={'Content-Type': 'application/json'},
                                  data=json.dumps(dict(input='1', calculatorState="")))
-        data = json.loads(response.data)
+        data = json.loads(response.data.decode())
         self.assertTrue(data['display'] == '1')
 
     def test_calculate_with_mid_state_number(self):
         response = self.app.post('/calculate',
                                  headers={'Content-Type': 'application/json'},
                                  data=json.dumps(dict(input='1', calculatorState=json.dumps({"display": "1"}))))
-        data = json.loads(response.data)
+        data = json.loads(response.data.decode())
         self.assertTrue(data['display'] == '11')
 
     def test_calculate_with_mid_state_operator(self):
         response = self.app.post('/calculate',
                                  headers={'Content-Type': 'application/json'},
                                  data=json.dumps(dict(input='+', calculatorState=json.dumps({"display": "4"}))))
-        data = json.loads(response.data)
+        data = json.loads(response.data.decode())
         self.assertTrue(data['display'] == '4')
 
     def test_full_operation(self):
         response = self.app.post('/calculate',
                                  headers={'Content-Type': 'application/json'},
                                  data=json.dumps(dict(input='1', calculatorState="")))
-        data = json.loads(response.data)
+        data = json.loads(response.data.decode())
         self.assertTrue(data['display'] == '1')
 
         response = self.app.post('/calculate',
                                  headers={'Content-Type': 'application/json'},
-                                 data=json.dumps(dict(input='+', calculatorState=response.data)))
-        data = json.loads(response.data)
+                                 data=json.dumps(dict(input='+', calculatorState=json.loads(response.data.decode()))))
+        data = json.loads(response.data.decode())
         self.assertTrue(data['display'] == '1')
 
         response = self.app.post('/calculate',
                                  headers={'Content-Type': 'application/json'},
-                                 data=json.dumps(dict(input='2', calculatorState=response.data)))
-        data = json.loads(response.data)
+                                 data=json.dumps(dict(input='2', calculatorState=json.loads(response.data.decode()))))
+        data = json.loads(response.data.decode())
         self.assertTrue(data['display'] == '2')
 
         response = self.app.post('/calculate',
                                  headers={'Content-Type': 'application/json'},
-                                 data=json.dumps(dict(input='=', calculatorState=response.data)))
-        data = json.loads(response.data)
+                                 data=json.dumps(dict(input='=', calculatorState=json.loads(response.data.decode()))))
+        data = json.loads(response.data.decode())
         self.assertTrue(data['display'] == '3')
 
 
