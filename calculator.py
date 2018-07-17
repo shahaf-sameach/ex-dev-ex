@@ -21,7 +21,8 @@ class Calculator(object):
       
       if input_s in "+-*/=":
         if len(new_state['history']) > 1 and not new_state['history'][1] is '':
-          a, b = int(new_state['history'][0]), int(new_state['history'][1])  
+          a = float(new_state['history'][0]) if '.' in new_state['history'][0] else int(new_state['history'][0])
+          b = float(new_state['history'][1]) if '.' in new_state['history'][1] else int(new_state['history'][1])
           if new_state['op'] == '+':
             c = a + b
           elif new_state['op'] == '-':
